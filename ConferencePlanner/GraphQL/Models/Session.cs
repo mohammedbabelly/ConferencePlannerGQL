@@ -8,8 +8,8 @@ namespace ConferencePlanner.GraphQL.Models {
     public class Session {
         public int Id { get; set; }
         [Required]
-        public string Title { get; set; }
-        public string Abstract { get; set; }
+        public string? Title { get; set; }
+        public string? Abstract { get; set; }
         public DateTimeOffset? StartTime { get; set; }
         public DateTimeOffset? EndTime { get; set; }
 
