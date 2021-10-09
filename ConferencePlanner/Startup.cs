@@ -25,7 +25,7 @@ namespace ConferencePlanner {
             });
 
             var connectionString = Configuration.GetConnectionString("ConferencePlannerDb");
-            services.AddDbContext<ApplicationDbContext>((serviceProvider, optionsBuilder) => {
+            services.AddPooledDbContextFactory<ApplicationDbContext>((serviceProvider, optionsBuilder) => {
                 optionsBuilder.UseNpgsql(connectionString,
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
                 optionsBuilder.UseApplicationServiceProvider(serviceProvider);
