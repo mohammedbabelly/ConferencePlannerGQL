@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferencePlanner.GraphQL.Models {
+namespace ConferencePlanner.GraphQL.Entities {
     public class Session {
         public int Id { get; set; }
         [Required]

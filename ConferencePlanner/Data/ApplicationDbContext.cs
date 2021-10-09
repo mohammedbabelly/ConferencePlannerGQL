@@ -1,4 +1,4 @@
-﻿using ConferencePlanner.GraphQL.Models;
+﻿using ConferencePlanner.GraphQL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConferencePlanner.Data {

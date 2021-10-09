@@ -1,4 +1,4 @@
-﻿namespace ConferencePlanner.GraphQL.Models {
+﻿namespace ConferencePlanner.GraphQL.Entities {
     public class SessionSpeaker {
         public int SessionId { get; set; }
 

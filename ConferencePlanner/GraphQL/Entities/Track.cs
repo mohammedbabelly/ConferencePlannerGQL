@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ConferencePlanner.GraphQL.Models {
+namespace ConferencePlanner.GraphQL.Entities {
     public class Track {
         public int Id { get; set; }
         [Required]

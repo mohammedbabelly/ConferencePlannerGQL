@@ -1,6 +1,6 @@
 ﻿using ConferencePlanner.Data;
 using ConferencePlanner.GraphQL.Extentions;
-using ConferencePlanner.GraphQL.Models;
+using ConferencePlanner.GraphQL.Entities;
 using HotChocolate;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

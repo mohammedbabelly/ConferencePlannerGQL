@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ConferencePlanner.GraphQL.Models {
+namespace ConferencePlanner.GraphQL.Entities {
     public class Attendee {
         public int Id { get; set; }
         public string? FirstName { get; set; }
