@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ConferencePlanner.REST.Tracks.Queries.GetTracks {
 
-    public class GetTracksQuery : IRequest<List<GetTrackDto>> { }
+    public class GetTracksQuery : IRequest<List<Track>> { }
 
-    public class QueryQueryHandler : IRequestHandler<GetTracksQuery, List<GetTrackDto>> {
+    public class QueryQueryHandler : IRequestHandler<GetTracksQuery, List<Track>> {
         private readonly IApplicationDbContext _context;
 
 
@@ -19,8 +19,8 @@ namespace ConferencePlanner.REST.Tracks.Queries.GetTracks {
             _context = context;
         }
 
-        public async Task<List<GetTrackDto>> Handle(GetTracksQuery request, CancellationToken cancellationToken) {
-            return await _context.Tracks.Select(f => new GetTrackDto { Id = f.Id, Name = f.Name }).ToListAsync(cancellationToken); 
+        public async Task<List<Track>> Handle(GetTracksQuery request, CancellationToken cancellationToken) {
+            return await _context.Tracks.ToListAsync(cancellationToken); 
         }
 
     }

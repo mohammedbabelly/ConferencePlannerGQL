@@ -24,7 +24,6 @@
     <Folder Include="REST\Sessions\Queries\" />
     <Folder Include="REST\Speakers\Commands\" />
     <Folder Include="REST\Speakers\Queries\" />
-    <Folder Include="REST\Tracks\Queries\GetTrack\" />
   </ItemGroup>
 
 </Project>
