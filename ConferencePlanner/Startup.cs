@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using ConferencePlanner.GraphQL;
 using ConferencePlanner.GraphQL.DataLoader;
+//using ConferencePlanner.GraphQL.Types;
 
 namespace ConferencePlanner {
     public class Startup {
@@ -37,7 +38,9 @@ namespace ConferencePlanner {
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
                 .AddMutationType<Mutation>()
-                .AddDataLoader<SpeakerByIdDataLoader>();
+                //.AddType<SpeakerType>()
+                .AddDataLoader<SpeakerByIdDataLoader>()
+                .AddDataLoader<SessionByIdDataLoader>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

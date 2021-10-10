@@ -8,6 +8,6 @@ namespace ConferencePlanner.GraphQL.Entities {
         public string? Name { get; set; }
         public string? Bio { get; set; }
         public string? Website { get; set; }
-        public ICollection<SessionSpeaker> SessionSpeakers { get; set; } = new List<SessionSpeaker>();
+        public ICollection<Session> Sessions { get; set; } = new List<Session>();
     }
 }

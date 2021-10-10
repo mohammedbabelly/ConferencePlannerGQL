@@ -6,6 +6,6 @@ namespace ConferencePlanner.GraphQL.Entities {
         public int Id { get; set; }
         [Required]
         public string? Name { get; set; }
-        public ICollection<Session> Sessions { get; set; } = new List<Session>();
+        public ICollection<Session>? Sessions { get; set; } = new List<Session>();
     }
 }
