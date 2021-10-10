@@ -1,7 +1,7 @@
 ﻿using ConferencePlanner.Data;
 using ConferencePlanner.GraphQL.Models.AddSpeaker;
 using ConferencePlanner.GraphQL.Extentions;
-using ConferencePlanner.GraphQL.Entities;
+using ConferencePlanner.Entities;
 using HotChocolate;
 using System.Threading.Tasks;
 using System.Collections.Generic;

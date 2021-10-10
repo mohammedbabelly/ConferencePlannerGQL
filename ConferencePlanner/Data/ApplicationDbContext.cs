@@ -1,8 +1,10 @@
-﻿using ConferencePlanner.GraphQL.Entities;
+﻿using ConferencePlanner.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ConferencePlanner.Data {
-    public class ApplicationDbContext : DbContext {
+    public class ApplicationDbContext : DbContext, IApplicationDbContext {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Track> Tracks { get; set; } = default!;
@@ -20,5 +22,8 @@ namespace ConferencePlanner.Data {
                 .HasIndex(a => a.Name)
                 .IsUnique();
         }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken()) 
+            => base.SaveChangesAsync(cancellationToken);
     }
 }

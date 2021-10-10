@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ConferencePlanner.GraphQL.Entities {
+namespace ConferencePlanner.Entities {
     public class Speaker {
         public int Id { get; set; }
         [Required]

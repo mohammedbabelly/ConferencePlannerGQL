@@ -1,4 +1,4 @@
-﻿using ConferencePlanner.GraphQL.Entities;
+﻿using ConferencePlanner.Entities;
 
 namespace ConferencePlanner.GraphQL.Models.AddSpeaker {
     public class AddSpeakerPayload {

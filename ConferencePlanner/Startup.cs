@@ -7,7 +7,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using ConferencePlanner.GraphQL;
-using ConferencePlanner.GraphQL.DataLoader;
+using MediatR;
+using System.Reflection;
+//using ConferencePlanner.GraphQL.DataLoader;
 //using ConferencePlanner.GraphQL.Types;
 
 namespace ConferencePlanner {
@@ -27,20 +29,25 @@ namespace ConferencePlanner {
             });
 
             var connectionString = Configuration.GetConnectionString("ConferencePlannerDb");
-            services.AddPooledDbContextFactory<ApplicationDbContext>((serviceProvider, optionsBuilder) => {
+            services.AddDbContext<ApplicationDbContext>((serviceProvider, optionsBuilder) => {
                 optionsBuilder.UseNpgsql(connectionString,
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
                 optionsBuilder.UseApplicationServiceProvider(serviceProvider);
             });
 
 
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            //GraphQL
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
-                .AddMutationType<Mutation>()
+                .AddMutationType<Mutation>();
                 //.AddType<SpeakerType>()
-                .AddDataLoader<SpeakerByIdDataLoader>()
-                .AddDataLoader<SessionByIdDataLoader>();
+                //.AddDataLoader<SpeakerByIdDataLoader>();
+            //.AddDataLoader<SessionByIdDataLoader>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -20,7 +20,7 @@ namespace ConferencePlanner.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("ConferencePlanner.GraphQL.Entities.Speaker", b =>
+            modelBuilder.Entity("ConferencePlanner.Entities.Speaker", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
