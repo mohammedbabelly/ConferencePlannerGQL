@@ -6,11 +6,17 @@ using HotChocolate;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using ConferencePlanner.GraphQL.Models.AddTrack;
+using MediatR;
+using ConferencePlanner.REST.Tracks.Commands.Add;
 
 namespace ConferencePlanner.GraphQL {
     public class Mutation {
+        #region Tracks
+
+        public async Task<Track> AddTrack(AddTrackInput input, [Service] ISender mediator) => await mediator.Send(new AddTrackCommand(input.Name));
+        #endregion
         [UseApplicationDbContext]
-        public async Task<AddSpeakerPayload> AddSpeakerAsync(AddSpeakerInput input, [ScopedService] ApplicationDbContext context) {
+        public async Task<AddSpeakerPayload> AddSpeaker(AddSpeakerInput input, [ScopedService] ApplicationDbContext context) {
             var speaker = new Speaker {
                 Name = input.Name,
                 Bio = input.Bio,
@@ -21,9 +27,9 @@ namespace ConferencePlanner.GraphQL {
 
             return new AddSpeakerPayload(speaker);
         }
-        
+
         [UseApplicationDbContext]
-        public async Task<AddSpeakerPayload> AddSessionAsync(AddSpeakerInput input, [ScopedService] ApplicationDbContext context) {
+        public async Task<AddSpeakerPayload> AddSession(AddSpeakerInput input, [ScopedService] ApplicationDbContext context) {
             var speaker = new Speaker {
                 Name = input.Name,
                 Bio = input.Bio,
@@ -35,13 +41,5 @@ namespace ConferencePlanner.GraphQL {
             return new AddSpeakerPayload(speaker);
         }
 
-        [UseApplicationDbContext]
-        public async Task<Track> AddTrackAsync(AddTrackInput input, [ScopedService] ApplicationDbContext context) {
-            var track = new Track { Name = input.Name, Sessions = new List<Session>() };
-            context.Tracks.Add(track);
-            await context.SaveChangesAsync();
-
-            return track;
-        }
     }
 }
