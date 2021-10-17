@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using MediatR;
 using ConferencePlanner.REST.Tracks.Queries.GetTracks;
 using ConferencePlanner.REST.Tracks.Queries.GetTrack;
+using HotChocolate.Data;
 
 namespace ConferencePlanner.GraphQL {
     public class Query {
         [GraphQLDescription("Get all tracks")]
+        [UseFiltering]
         public async Task<List<Track>> GetTracks([Service] ISender mediator) {
             return await mediator.Send(new GetTracksQuery());
         }

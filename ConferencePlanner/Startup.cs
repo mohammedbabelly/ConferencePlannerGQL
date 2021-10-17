@@ -44,10 +44,11 @@ namespace ConferencePlanner {
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
-                .AddMutationType<Mutation>();
+                .AddMutationType<Mutation>()
+                .AddFiltering();
                 //.AddType<SpeakerType>()
                 //.AddDataLoader<SpeakerByIdDataLoader>();
-            //.AddDataLoader<SessionByIdDataLoader>();
+                //.AddDataLoader<SessionByIdDataLoader>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
