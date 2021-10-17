@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace ConferencePlanner.REST.Tracks.Queries.GetTrack {
 
-    public record GetTrackQuery(int Id) : IRequest<Track> { }
+    public class GetTrackQuery : IRequest<Track> {
+        public int Id { get; set; }
+    }
 
     public class GetTrackQueryHandler : IRequestHandler<GetTrackQuery, Track> {
         private readonly IApplicationDbContext _context;

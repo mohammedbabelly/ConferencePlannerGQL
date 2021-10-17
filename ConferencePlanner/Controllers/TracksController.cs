@@ -18,6 +18,6 @@ namespace ConferencePlanner.Controllers {
         public async Task<List<Track>> GetTracks() => await Mediator.Send(new GetTracksQuery());
 
         [HttpGet("{id}")]
-        public async Task<Track> GetTrack(int id) => await Mediator.Send(new GetTrackQuery(id));
+        public async Task<Track> GetTrack(int id) => await Mediator.Send(new GetTrackQuery { Id = id });
     }
 }
