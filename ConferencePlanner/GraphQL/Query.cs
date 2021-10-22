@@ -23,11 +23,20 @@ namespace ConferencePlanner.GraphQL {
         [GraphQLDescription("Get track by id")]     
         public async Task<Track> GetTrack(int id, [Service] ISender mediator) => await mediator.Send(new GetTrackQuery { Id = id});
         #endregion
+        
+        #region Sessions
+
+        //[GraphQLDescription("Get all sessions")]
+        //[UseFiltering]
+        //public async Task<List<Track>> GetSessions([Service] ISender mediator) {
+        //    return await mediator.Send(new GetTracksQuery());
+        //}
+
+        //[GraphQLDescription("Get track by id")]
+        //public async Task<Track> GetSession(int id, [Service] ISender mediator) => await mediator.Send(new GetTrackQuery { Id = id});
+        #endregion
 
 
-        [GraphQLDescription("Get all speakers")]
-        [UseApplicationDbContext]
-        public Task<List<Speaker>> GetSpeakers([ScopedService] ApplicationDbContext context) =>
-            context.Speakers.ToListAsync();
+
     }
 }

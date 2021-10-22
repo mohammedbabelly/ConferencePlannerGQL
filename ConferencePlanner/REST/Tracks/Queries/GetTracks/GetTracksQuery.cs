@@ -20,7 +20,9 @@ namespace ConferencePlanner.REST.Tracks.Queries.GetTracks {
         }
 
         public async Task<List<Track>> Handle(GetTracksQuery request, CancellationToken cancellationToken) {
-            return await _context.Tracks.ToListAsync(cancellationToken); 
+            return await _context.Tracks
+                .Include(f=>f.Sessions)
+                .ToListAsync(cancellationToken); 
         }
 
     }

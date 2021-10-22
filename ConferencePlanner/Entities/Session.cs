@@ -11,8 +11,6 @@ namespace ConferencePlanner.Entities {
         public DateTimeOffset? StartTime { get; set; }
         public DateTimeOffset? EndTime { get; set; }
 
-        public TimeSpan Duration => EndTime?.Subtract(StartTime ?? EndTime ?? DateTimeOffset.MinValue) ?? TimeSpan.Zero;
-
         public int? TrackId { get; set; }
 
         public ICollection<Speaker> Speakers { get; set; } = new List<Speaker>();
@@ -20,5 +18,6 @@ namespace ConferencePlanner.Entities {
         public ICollection<Attendee> Attendees { get; set; } = new List<Attendee>();
 
         public Track? Track { get; set; }
+        public TimeSpan Duration => EndTime?.Subtract(StartTime ?? EndTime ?? DateTimeOffset.MinValue) ?? TimeSpan.Zero;
     }
 }
