@@ -10,7 +10,8 @@ namespace ConferencePlanner.GraphQL {
     public class Mutation {
         #region Tracks
 
-        public async Task<Track> AddTrack(AddTrackInput input, [Service] ISender mediator) => await mediator.Send(new AddTrackCommand(input.Name));
+        public async Task<Track> AddTrack(AddTrackInput input, [Service] ISender mediator) 
+            => await mediator.Send(new AddTrackCommand(input.Name));
         #endregion
 
         #region Sessions

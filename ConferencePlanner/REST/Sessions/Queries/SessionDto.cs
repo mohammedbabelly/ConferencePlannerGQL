@@ -1,22 +1,19 @@
-﻿using System;
+﻿using ConferencePlanner.Entities;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace ConferencePlanner.Entities {
-    public class Session {
+namespace ConferencePlanner.REST.Sessions.Queries {
+    public class SessionDto {
         public int Id { get; set; }
-        [Required]
         public string? Title { get; set; }
         public string? Description { get; set; }
         public DateTimeOffset? StartTime { get; set; }
         public DateTimeOffset? EndTime { get; set; }
 
         public int? TrackId { get; set; }
-        public int? SpeakerId { get; set; }
 
-        public Track? Track { get; set; }
-        public Speaker? Speaker { get; set; }
         public ICollection<Attendee> Attendees { get; set; } = new List<Attendee>();
+
         public TimeSpan Duration => EndTime?.Subtract(StartTime ?? EndTime ?? DateTimeOffset.MinValue) ?? TimeSpan.Zero;
     }
 }

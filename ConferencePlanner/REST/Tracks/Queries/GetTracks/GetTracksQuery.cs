@@ -21,7 +21,7 @@ namespace ConferencePlanner.REST.Tracks.Queries.GetTracks {
 
         public async Task<List<Track>> Handle(GetTracksQuery request, CancellationToken cancellationToken) {
             return await _context.Tracks
-                .Include(f=>f.Sessions)
+                //.Include(f=>f.Sessions)
                 .ToListAsync(cancellationToken); 
         }
 

@@ -9,6 +9,8 @@ using MediatR;
 using ConferencePlanner.REST.Tracks.Queries.GetTracks;
 using ConferencePlanner.REST.Tracks.Queries.GetTrack;
 using HotChocolate.Data;
+using ConferencePlanner.REST.Sessions.Queries.GetSessions;
+using ConferencePlanner.REST.Sessions.Queries.GetSession;
 
 namespace ConferencePlanner.GraphQL {
     public class Query {
@@ -26,14 +28,14 @@ namespace ConferencePlanner.GraphQL {
         
         #region Sessions
 
-        //[GraphQLDescription("Get all sessions")]
-        //[UseFiltering]
-        //public async Task<List<Track>> GetSessions([Service] ISender mediator) {
-        //    return await mediator.Send(new GetTracksQuery());
-        //}
+        [GraphQLDescription("Get all sessions")]
+        [UseFiltering]
+        public async Task<List<Session>> GetSessions([Service] ISender mediator) {
+            return await mediator.Send(new GetSessionsQuery());
+        }
 
-        //[GraphQLDescription("Get track by id")]
-        //public async Task<Track> GetSession(int id, [Service] ISender mediator) => await mediator.Send(new GetTrackQuery { Id = id});
+        [GraphQLDescription("Get session by id")]
+        public async Task<Session> GetSession(int id, [Service] ISender mediator) => await mediator.Send(new GetSessionQuery { Id = id});
         #endregion
 
 
