@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConferencePlanner.REST.Sessions.Queries.GetSession {
 
-    public class GetSessionQuery : IRequest<Session> {
-        public int Id { get; set; }
-    }
+    public record GetSessionQuery(int id) : IRequest<Session> { }
 
     public class GetSessionsQueryHandler : IRequestHandler<GetSessionQuery, Session> {
         private readonly IApplicationDbContext _context;
@@ -23,7 +21,7 @@ namespace ConferencePlanner.REST.Sessions.Queries.GetSession {
             return await _context
                 .Sessions
                 //.Include(f => f.Attendees)
-                .FirstOrDefaultAsync(f => f.Id == request.Id);
+                .FirstOrDefaultAsync(f => f.Id == request.id);
         }
 
     }

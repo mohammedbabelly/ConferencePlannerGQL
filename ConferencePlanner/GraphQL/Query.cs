@@ -1,5 +1,4 @@
 ﻿using ConferencePlanner.Data;
-using ConferencePlanner.GraphQL.Extentions;
 using ConferencePlanner.Entities;
 using HotChocolate;
 using Microsoft.EntityFrameworkCore;
@@ -31,11 +30,11 @@ namespace ConferencePlanner.GraphQL {
         [GraphQLDescription("Get all sessions")]
         [UseFiltering]
         public async Task<List<Session>> GetSessions([Service] ISender mediator) {
-            return await mediator.Send(new GetSessionsQuery());
+            return await mediator.Send(new GetSessionsQuery(1));
         }
 
         [GraphQLDescription("Get session by id")]
-        public async Task<Session> GetSession(int id, [Service] ISender mediator) => await mediator.Send(new GetSessionQuery { Id = id});
+        public async Task<Session> GetSession(int id, [Service] ISender mediator) => await mediator.Send(new GetSessionQuery(id));
         #endregion
 
 

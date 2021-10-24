@@ -10,6 +10,7 @@ namespace ConferencePlanner.Entities {
         public string? Description { get; set; }
         public DateTimeOffset? StartTime { get; set; }
         public DateTimeOffset? EndTime { get; set; }
+        public SessionAttendType Type { get; set; }
 
         public int? TrackId { get; set; }
         public int? SpeakerId { get; set; }
@@ -19,4 +20,9 @@ namespace ConferencePlanner.Entities {
         public ICollection<Attendee> Attendees { get; set; } = new List<Attendee>();
         public TimeSpan Duration => EndTime?.Subtract(StartTime ?? EndTime ?? DateTimeOffset.MinValue) ?? TimeSpan.Zero;
     }
+    public enum SessionAttendType {
+        OnlyParticipants, 
+        ForAll
+    }
+
 }

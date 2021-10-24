@@ -15,9 +15,9 @@ namespace ConferencePlanner.Controllers {
         }
 
         [HttpGet]
-        public async Task<List<Session>> GetSessions() => await Mediator.Send(new GetSessionsQuery());
+        public async Task<List<Session>> GetSessions() => await Mediator.Send(new GetSessionsQuery(1));
 
         [HttpGet("{id}")]
-        public async Task<Session> GetSession(int id) => await Mediator.Send(new GetSessionQuery { Id = id });
+        public async Task<Session> GetSession(int id) => await Mediator.Send(new GetSessionQuery(id));
     }
 }

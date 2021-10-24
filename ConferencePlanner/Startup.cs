@@ -6,11 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using ConferencePlanner.GraphQL;
 using MediatR;
 using System.Reflection;
-//using ConferencePlanner.GraphQL.DataLoader;
-//using ConferencePlanner.GraphQL.Types;
+using ConferencePlanner.GraphQL.Schemas;
+using GraphQL.Server.Ui.Playground;
+using GraphQL.Server;
 
 namespace ConferencePlanner {
     public class Startup {
@@ -33,22 +33,20 @@ namespace ConferencePlanner {
                 optionsBuilder.UseNpgsql(connectionString,
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
                 optionsBuilder.UseApplicationServiceProvider(serviceProvider);
-            });
 
+            }, ServiceLifetime.Transient);
 
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            services.AddTransient<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             //GraphQL
-            services
-                .AddGraphQLServer()
-                .AddQueryType<Query>()
-                .AddMutationType<Mutation>()
-                .AddFiltering();
-                //.AddType<SpeakerType>()
-                //.AddDataLoader<SpeakerByIdDataLoader>();
-                //.AddDataLoader<SessionByIdDataLoader>();
+            services.AddScoped<AppSchema>();
+
+            services.AddGraphQL()
+                    .AddSystemTextJson()
+                    .AddGraphTypes(typeof(AppSchema), ServiceLifetime.Scoped);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,8 +63,10 @@ namespace ConferencePlanner {
 
             app.UseAuthorization();
 
+            app.UseGraphQL<AppSchema>();
+            app.UseGraphQLPlayground(options: new GraphQLPlaygroundOptions());
+
             app.UseEndpoints(endpoints => {
-                endpoints.MapGraphQL();
                 endpoints.MapControllers();
             });
         }

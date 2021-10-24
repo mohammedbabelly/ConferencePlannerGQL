@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConferencePlanner.REST.Sessions.Queries.GetSessions {
 
-    public class GetSessionsQuery : IRequest<List<Session>> { }
+    public record GetSessionsQuery(int trackId) : IRequest<List<Session>> { }
 
     public class GetSessionsQueryHandler : IRequestHandler<GetSessionsQuery, List<Session>> {
         private readonly IApplicationDbContext _context;
@@ -20,9 +20,10 @@ namespace ConferencePlanner.REST.Sessions.Queries.GetSessions {
         }
 
         public async Task<List<Session>> Handle(GetSessionsQuery request, CancellationToken cancellationToken) {
-            return await _context.Sessions
-                //.Include(f => f.Attendees)
+            var res = await _context.Sessions
+                .Where(f => f.TrackId == request.trackId)
                 .ToListAsync(cancellationToken);
+            return res;
         }
     }
 }
