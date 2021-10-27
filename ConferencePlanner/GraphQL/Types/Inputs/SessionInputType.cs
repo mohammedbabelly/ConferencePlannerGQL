@@ -8,6 +8,7 @@ namespace ConferencePlanner.GraphQL.Types.Inputs {
             Field<NonNullGraphType<StringGraphType>>("description");
             Field<NonNullGraphType<DateTimeOffsetGraphType>>("StartTime");
             Field<NonNullGraphType<DateTimeOffsetGraphType>>("EndTime");
+            Field<NonNullGraphType<SessionTypeEnumType>>("Type");
             Field<NonNullGraphType<IntGraphType>>("trackId");
         }
     }

@@ -26,7 +26,8 @@ namespace ConferencePlanner.REST.Sessions.Commands.Add {
                 Description = request.Input.Description,
                 StartTime = request.Input.StartTime,
                 EndTime = request.Input.EndTime,
-                Track = track
+                Track = track,
+                Type = request.Input.Type
             };
             _context.Sessions.Add(session);
             await _context.SaveChangesAsync(cancellationToken);

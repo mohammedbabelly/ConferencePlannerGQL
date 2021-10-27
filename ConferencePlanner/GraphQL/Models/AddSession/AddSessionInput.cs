@@ -7,5 +7,6 @@ namespace ConferencePlanner.Entities {
         public DateTimeOffset? StartTime { get; set; }
         public DateTimeOffset? EndTime { get; set; }
         public int? TrackId { get; set; }
+        public SessionAttendType Type { get; set; }
     }
 }

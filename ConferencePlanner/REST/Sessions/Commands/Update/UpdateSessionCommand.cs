@@ -25,6 +25,7 @@ namespace ConferencePlanner.REST.Sessions.Commands.Update {
             Session.Description = request.NewSession.Description;
             Session.StartTime = request.NewSession.StartTime;
             Session.EndTime = request.NewSession.EndTime;
+            Session.Type = request.NewSession.Type;
 
             await _context.SaveChangesAsync(cancellationToken);
             return Session;
