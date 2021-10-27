@@ -2,12 +2,13 @@
 using ConferencePlanner.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConferencePlanner.REST.Sessions.Queries.GetSession {
 
-    public record GetSessionQuery(int id) : IRequest<Session> { }
+    public record GetSessionQuery(int Id) : IRequest<Session> { }
 
     public class GetSessionsQueryHandler : IRequestHandler<GetSessionQuery, Session> {
         private readonly IApplicationDbContext _context;
@@ -18,10 +19,12 @@ namespace ConferencePlanner.REST.Sessions.Queries.GetSession {
         }
 
         public async Task<Session> Handle(GetSessionQuery request, CancellationToken cancellationToken) {
-            return await _context
+             var session = await _context
                 .Sessions
-                //.Include(f => f.Attendees)
-                .FirstOrDefaultAsync(f => f.Id == request.id);
+                .FirstOrDefaultAsync(f => f.Id == request.Id);
+            if (session == null)
+                throw new Exception($"Session with id {request.Id} was not found");
+            return session;
         }
 
     }

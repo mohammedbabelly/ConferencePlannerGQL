@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConferencePlanner.REST.Tracks.Delete {
+namespace ConferencePlanner.REST.Tracks.Commands.Delete {
 
     public record DeleteTrackCommand(int Id) : IRequest<Track> { }
 

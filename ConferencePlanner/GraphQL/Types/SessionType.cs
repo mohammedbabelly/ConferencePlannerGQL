@@ -10,7 +10,6 @@ namespace ConferencePlanner.GraphQL.Types {
             Field(f => f.StartTime, type: typeof(DateTimeOffsetGraphType)).Description("Session StartTime");
             Field(f => f.EndTime, type: typeof(DateTimeOffsetGraphType)).Description("Session EndTime");
             Field<SessionTypeEnumType>("Type", "Session Type");
-            //Field(f => f.SpeakerId, type: typeof(IdGraphType)).Description("Session SpeakerId");
             Field(f => f.TrackId, type: typeof(IdGraphType)).Description("Session TrackId");
         }
     }

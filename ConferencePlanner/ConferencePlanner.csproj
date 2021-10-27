@@ -32,8 +32,6 @@
   <ItemGroup>
     <Folder Include="REST\Attendees\Commands\" />
     <Folder Include="REST\Attendees\Queries\" />
-    <Folder Include="REST\Speakers\Commands\" />
-    <Folder Include="REST\Speakers\Queries\" />
   </ItemGroup>
 
 </Project>

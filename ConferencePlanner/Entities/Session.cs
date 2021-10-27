@@ -13,10 +13,8 @@ namespace ConferencePlanner.Entities {
         public SessionAttendType Type { get; set; }
 
         public int? TrackId { get; set; }
-        public int? SpeakerId { get; set; }
 
         public Track? Track { get; set; }
-        public Speaker? Speaker { get; set; }
         public ICollection<Attendee> Attendees { get; set; } = new List<Attendee>();
         public TimeSpan Duration => EndTime?.Subtract(StartTime ?? EndTime ?? DateTimeOffset.MinValue) ?? TimeSpan.Zero;
     }
