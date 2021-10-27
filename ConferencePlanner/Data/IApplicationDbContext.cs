@@ -7,7 +7,6 @@ namespace ConferencePlanner.Data {
     public interface IApplicationDbContext {
         public DbSet<Track> Tracks { get; set; }
         public DbSet<Session> Sessions { get; set; }
-        public DbSet<Speaker> Speakers { get; set; }
         public DbSet<Attendee> Attendees { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
 
