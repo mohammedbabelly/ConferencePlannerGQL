@@ -1,6 +1,5 @@
 ﻿using ConferencePlanner.Entities;
 using ConferencePlanner.REST.Tracks.Commands.Add;
-using ConferencePlanner.REST.Tracks.Queries.GetTrack;
 using ConferencePlanner.REST.Tracks.Queries.GetTracks;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -17,7 +16,5 @@ namespace ConferencePlanner.Controllers {
         [HttpGet]
         public async Task<List<Track>> GetTracks() => await Mediator.Send(new GetTracksQuery());
 
-        [HttpGet("{id}")]
-        public async Task<Track> GetTrack(int id) => await Mediator.Send(new GetTrackQuery { Id = id });
     }
 }

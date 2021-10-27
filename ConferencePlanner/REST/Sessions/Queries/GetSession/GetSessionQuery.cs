@@ -19,9 +19,10 @@ namespace ConferencePlanner.REST.Sessions.Queries.GetSession {
         }
 
         public async Task<Session> Handle(GetSessionQuery request, CancellationToken cancellationToken) {
-             var session = await _context
-                .Sessions
-                .FirstOrDefaultAsync(f => f.Id == request.Id);
+            var session = await _context
+               .Sessions
+               .Include(f => f.Attendees)
+               .FirstOrDefaultAsync(f => f.Id == request.Id);
             if (session == null)
                 throw new Exception($"Session with id {request.Id} was not found");
             return session;

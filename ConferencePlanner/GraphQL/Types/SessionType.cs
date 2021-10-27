@@ -11,6 +11,7 @@ namespace ConferencePlanner.GraphQL.Types {
             Field(f => f.EndTime, type: typeof(DateTimeOffsetGraphType)).Description("Session EndTime");
             Field<SessionTypeEnumType>("Type", "Session Type");
             Field(f => f.TrackId, type: typeof(IdGraphType)).Description("Session TrackId");
+            Field(f => f.Attendees, type: typeof(ListGraphType<AttendeeType>)).Description("Session Attendees");
         }
     }
     public class SessionTypeEnumType : EnumerationGraphType<SessionAttendType> {
