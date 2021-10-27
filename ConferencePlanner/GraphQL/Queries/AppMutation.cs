@@ -1,6 +1,7 @@
 ﻿using ConferencePlanner.Entities;
 using ConferencePlanner.GraphQL.Types;
 using ConferencePlanner.GraphQL.Types.Inputs;
+using ConferencePlanner.REST.Attendees.Commands;
 using ConferencePlanner.REST.Sessions.Commands.Add;
 using ConferencePlanner.REST.Sessions.Commands.Delete;
 using ConferencePlanner.REST.Sessions.Commands.Update;
@@ -92,6 +93,22 @@ namespace ConferencePlanner.GraphQL.Queries {
                         var sessionId = context.GetArgument<int>("sessionId");
                         var session = context.GetArgument<AddSessionInput>("newSession");
                         return await mediator.Send(new UpdateSessionCommand(session, sessionId));
+                    } catch (Exception e) {
+                        throw new ExecutionError(e.Message);
+                    }
+                }
+            );
+            FieldAsync<AttendeeType>(
+                "registerAttendee",
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "sessionId" },
+                    new QueryArgument<NonNullGraphType<AttendeeInputType>> { Name = "attendee" }
+                 ),
+                resolve: async context => {
+                    try {
+                        var sessionId = context.GetArgument<int>("sessionId");
+                        var attendee = context.GetArgument<Attendee>("attendee");
+                        return await mediator.Send(new RegisterAttendeeCommand(sessionId, attendee));
                     } catch (Exception e) {
                         throw new ExecutionError(e.Message);
                     }

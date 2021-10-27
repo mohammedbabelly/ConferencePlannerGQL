@@ -30,8 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="REST\Attendees\Commands\" />
-    <Folder Include="REST\Attendees\Queries\" />
+    <Folder Include="GraphQL\Models\RegisterAttendee\" />
   </ItemGroup>
 
 </Project>
