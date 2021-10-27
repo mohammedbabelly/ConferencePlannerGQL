@@ -7,6 +7,7 @@ using ConferencePlanner.REST.Tracks.Delete;
 using GraphQL;
 using GraphQL.Types;
 using MediatR;
+using System;
 
 namespace ConferencePlanner.GraphQL.Queries {
     public class AppMutation : ObjectGraphType {
@@ -35,8 +36,12 @@ namespace ConferencePlanner.GraphQL.Queries {
                 "deleteTrack",
                 arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "trackId" }),
                 resolve: async context => {
-                    var trackId = context.GetArgument<int>("trackId");
-                    return await mediator.Send(new DeleteTrackCommand(trackId));
+                    try {
+                        var trackId = context.GetArgument<int>("trackId");
+                        return await mediator.Send(new DeleteTrackCommand(trackId));
+                    } catch (Exception e) {
+                        throw new ExecutionError(e.Message);
+                    }
                 }
             );
         }
