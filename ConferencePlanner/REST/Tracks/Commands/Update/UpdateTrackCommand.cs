@@ -9,10 +9,10 @@ namespace ConferencePlanner.REST.Tracks.Commands.Update {
 
     public record UpdateTrackCommand(string NewName, int OldId) : IRequest<Track> { }
 
-    public class AddTrackCommandHandler : IRequestHandler<UpdateTrackCommand, Track> {
+    public class UpdateTrackCommandHandler : IRequestHandler<UpdateTrackCommand, Track> {
         private readonly IApplicationDbContext _context;
 
-        public AddTrackCommandHandler(IApplicationDbContext context) {
+        public UpdateTrackCommandHandler(IApplicationDbContext context) {
             _context = context;
         }
 

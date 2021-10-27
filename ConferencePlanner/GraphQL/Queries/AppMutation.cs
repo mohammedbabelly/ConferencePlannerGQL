@@ -3,6 +3,7 @@ using ConferencePlanner.GraphQL.Types;
 using ConferencePlanner.GraphQL.Types.Inputs;
 using ConferencePlanner.REST.Tracks.Commands.Add;
 using ConferencePlanner.REST.Tracks.Commands.Update;
+using ConferencePlanner.REST.Tracks.Delete;
 using GraphQL;
 using GraphQL.Types;
 using MediatR;
@@ -28,6 +29,14 @@ namespace ConferencePlanner.GraphQL.Queries {
                     var trackId = context.GetArgument<int>("trackId");
                     var track = context.GetArgument<Track>("newTrack");
                     return await mediator.Send(new UpdateTrackCommand(track.Name, trackId));
+                }
+            );
+            FieldAsync<TrackType>(
+                "deleteTrack",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "trackId" }),
+                resolve: async context => {
+                    var trackId = context.GetArgument<int>("trackId");
+                    return await mediator.Send(new DeleteTrackCommand(trackId));
                 }
             );
         }
